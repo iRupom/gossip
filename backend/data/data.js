@@ -76,7 +76,7 @@ const chats = [
       },
       {
         name: "rakib",
-        email: "rakib@example.com",
+        email: "rakib;@example.com",
       },
     ],
     _id: "617a077e18c25468bc7cfdd4",
