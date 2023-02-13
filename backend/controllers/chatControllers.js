@@ -28,7 +28,7 @@ const accessChat = asyncHandler(async (req, res) => {
   if (isChat.length > 0) {
     res.send(isChat[0]);
   } else {
-    let chatData = {
+    var chatData = {
       chatName: "sender",
       isGroupChat: false,
       users: [req.user._id, userId],
@@ -50,7 +50,7 @@ const accessChat = asyncHandler(async (req, res) => {
 const fetchChats = asyncHandler(async (req, res) => {
   try {
     Chat.find({
-      users: { $elemMatch: { $eq: response.user._id } },
+      users: { $elemMatch: { $eq: req.user._id } },
     })
       .populate("users", "-password")
       .populate("groupAdmin", "-password")
@@ -76,7 +76,7 @@ const createGroupChat = asyncHandler(async (req, res) => {
     });
   }
 
-  let users = JSON.parse(req.body.users);
+  var users = JSON.parse(req.body.users);
 
   if (users.length < 2) {
     return res
